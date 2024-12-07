@@ -4,7 +4,7 @@ namespace App\Enums\Traits;
 
 use Illuminate\Support\Str;
 
-trait Translatable
+trait TranslatableChoices
 {
     public static function langFile(): string
     {
@@ -20,12 +20,17 @@ trait Translatable
         return $this->name;
     }
 
-    public function trans(...$args)
+    public function transChoice(...$args)
     {
         $langFile = static::langFile();
         $langKey = $this->langKey();
 
-        return trans("{$langFile}.{$langKey}", ...$args);
+        return trans_choice("{$langFile}.{$langKey}", ...$args);
+    }
+
+    public function trans(...$args)
+    {
+        return $this->transChoice(1, ...$args);
     }
 
     public static function options(...$args)
@@ -33,6 +38,14 @@ trait Translatable
         return collect(static::cases())
             ->mapWithKeys(fn ($enum) => [
                 $enum->value => $enum->trans(...$args),
+            ]);
+    }
+
+    public static function optionsChoice(...$args)
+    {
+        return collect(static::cases())
+            ->mapWithKeys(fn ($enum) => [
+                $enum->value => $enum->transChoice(...$args),
             ]);
     }
 }
