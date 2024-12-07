@@ -13,7 +13,7 @@ Check out [Enums/Role.php](app/Enums/Role.php) for a more complex example:
 
 - [Enums/Traits/TranslatableChoices.php](app/Enums/Traits/TranslatableChoices.php) builds upon the original translations trait, adding the ability to use the `transChoice` system for anything that might need displaying in a "countable" manner.
 - The `Role` enum also overloads the `langFile` method, to point to a specific language file.
-- Finally, the `Role` enum also sets a `langMap` to translate the enums to keys for use in the language file.
+- Finally, the `Role` enum also overloads the `langKey` to pick out specific keys for use in the language file.
 
 So the system is pretty flexible, and easy to rework to your needs!  
 Have a look around and see what you think.
