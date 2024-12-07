@@ -17,9 +17,9 @@ enum Role: string
         return 'role';
     }
 
-    protected function langMap(Role $role)
+    protected function langKey()
     {
-        return match ($role) {
+        return match ($this) {
             Role::User => 'u',
             Role::Guest => 'g',
             Role::Cat => 'c',

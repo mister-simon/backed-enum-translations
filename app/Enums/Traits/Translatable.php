@@ -13,10 +13,6 @@ trait Translatable
 
     public function langKey(): string
     {
-        if (method_exists($this, 'langMap')) {
-            return $this->langMap($this);
-        }
-
         return $this->name;
     }
 
